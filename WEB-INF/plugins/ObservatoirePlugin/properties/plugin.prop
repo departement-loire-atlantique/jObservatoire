@@ -1,0 +1,11 @@
+$jcmsplugin.observatoire.category.cartes.root : local_5007
+$jcmsplugin.observatoire.category.stats.root : local_5025
+$jcmsplugin.observatoire.category.etudes.root :  local_5043
+$jcmsplugin.observatoire.category.motscle.root :  local_5121
+
+$jcmsplugin.observatoire.contenusAgents.cat :  r_5465
+$jcmsplugin.observatoire.contenusAgents.group :  r_5467
+
+
+# Propriétés surchargées de Socle
+$jcmsplugin.socle.category.categorieDeNavigation.root: j_5
