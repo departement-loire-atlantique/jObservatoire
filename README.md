@@ -1,4 +1,4 @@
-# jPlaObservatoire
+# jObservatoire
 Module dédié au site Observatoire
 
 <p>
