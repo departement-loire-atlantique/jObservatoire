@@ -133,7 +133,6 @@
         
     </article>
     
-    
     <%-- Partagez cette page --%>
     <%@ include file="/plugins/SoclePlugin/jsp/portal/socialNetworksShare.jspf" %>
     
