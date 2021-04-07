@@ -12,7 +12,6 @@ import fr.cg44.plugin.socle.SocleUtils;
 public class ObservatoireUtils{
   private static final Logger logger = Logger.getLogger(ObservatoireUtils.class);
   private static Channel channel = Channel.getChannel();
-  private static String userLang = channel.getCurrentUserLang();
   private static Category catCartes = channel.getCategory("$jcmsplugin.observatoire.category.cartes.root");
   private static Category catStats = channel.getCategory("$jcmsplugin.observatoire.category.stats.root");
   private static Category catEtudes = channel.getCategory("$jcmsplugin.observatoire.category.etudes.root");
