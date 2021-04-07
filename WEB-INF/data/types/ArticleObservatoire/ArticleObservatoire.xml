@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type name="ArticleObservatoire" superclass="com.jalios.jcms.Content" debatable="false" unitFieldEdition="true" audienced="false" categoryTab="true" readRightTab="true" updateRightTab="true" templateTab="true" workflowTab="true" advancedTab="true" titleML="true">
+  <label xml:lang="fr">Article observatoire</label>
+  <title ml="true">
+    <label xml:lang="en">Title</label>
+    <label xml:lang="fr">Titre</label>
+  </title>
+  <fields>
+    <field name="description" editor="wysiwyg" required="true" type="String" searchable="true" wiki="true" rows="5" cols="80" compactDisplay="false" ml="false" descriptionType="text" abstract="true" truncate="400" html="false" checkHtml="true" wikiwyg="false" toolbars="basic,format,style,font" tab="contenu">
+      <label xml:lang="fr">Description</label>
+    </field>
+    <field name="source" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" tab="contenu">
+      <label xml:lang="fr">Source</label>
+    </field>
+    <field name="illustrationPrincipale" editor="image" required="false" compactDisplay="false" type="String" searchable="false" size="80" maxlength="500" ml="false" imageMap="false" descriptionType="text" dataimage="true" html="false" checkHtml="true" resize="false" resizeWidth="100" resizeHeight="75" tab="contenu">
+      <label xml:lang="fr">Illustration principale</label>
+    </field>
+    <field name="imageCarree" editor="image" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" descriptionType="text" html="false" checkHtml="true" tab="contenu">
+      <label xml:lang="fr">Image carrée</label>
+      <description xml:lang="fr"><div class="wysiwyg"><p>Format attendu : 138x138px</p></div></description>
+    </field>
+    <field name="imageMobile" editor="image" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" descriptionType="text" html="false" checkHtml="true" tab="contenu">
+      <label xml:lang="fr">Image mobile</label>
+      <description xml:lang="fr"><div class="wysiwyg"><p>Format attendu : 300x200px</p></div></description>
+    </field>
+    <field name="copyright" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="true" html="false" checkHtml="true" tab="contenu">
+      <label xml:lang="fr">Copyright</label>
+    </field>
+    <field name="legende" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="true" html="false" checkHtml="true" tab="contenu">
+      <label xml:lang="fr">Légende</label>
+    </field>
+    <field name="texteAlternatif" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="true" html="false" checkHtml="true" tab="contenu">
+      <label xml:lang="fr">Texte alternatif</label>
+    </field>    
+    <field name="fichiers" editor="link" required="false" compactDisplay="false" type="com.jalios.jcms.FileDocument[]" ml="false" tab="contenu">
+      <label xml:lang="fr">Fichiers</label>
+    </field>
+    <field name="libellesLiensExternes" editor="textfield" required="false" compactDisplay="false" type="String[]" searchable="false" size="80" ml="false" html="false" checkHtml="true" descriptionType="text" tabGroup="liens" tab="contenu">
+      <label xml:lang="fr">Libellés liens externes</label>
+    </field>
+    <field name="liensExternes" editor="url" required="false" compactDisplay="false" type="String[]" searchable="false" size="80" maxlength="500" ml="false" openWindow="false" pattern="^((http)|(https)|(ftp)|(mailto)):.*" descriptionType="text" tabGroup="liens" html="false" checkHtml="true" tab="contenu">
+      <label xml:lang="fr">Liens externes</label>
+    </field>
+    <field name="libellesLiensOpendata" editor="textfield" required="false" compactDisplay="false" type="String[]" searchable="false" size="80" ml="false" html="false" checkHtml="true" descriptionType="text" tabGroup="opendata" tab="contenu">
+      <label xml:lang="fr">Libellés liens opendata</label>
+    </field>
+    <field name="liensOpendata" editor="url" required="false" compactDisplay="false" type="String[]" searchable="false" size="80" maxlength="500" ml="false" openWindow="false" pattern="^((http)|(https)|(ftp)|(mailto)):.*" descriptionType="text" tabGroup="opendata" html="false" checkHtml="true" tab="contenu">
+      <label xml:lang="fr">Liens opendata</label>
+    </field>
+    <field name="contenu" editor="wysiwyg" required="false" compactDisplay="false" type="String" searchable="true" rows="16" cols="100" ml="false" toolbars="basic,format" checkHtml="true" inline="true" tab="contenu">
+      <label xml:lang="fr">Contenu</label>
+    </field>
+    <field name="texteencart" editor="wysiwyg" required="false" compactDisplay="false" type="String" searchable="true" rows="16" cols="100" ml="false" toolbars="basic,format" checkHtml="true" inline="true" descriptionType="text" html="false" tab="contenu">
+      <label xml:lang="fr">Texte encart</label>
+      <description xml:lang="fr">Génère un encart à droite de l'article. Pour insérer un titre, choisissez le format "Titre 2" pour la 1è ligne de l'encart.</description>
+    </field>
+    <field name="voirAussi" editor="link" required="false" compactDisplay="false" type="com.jalios.jcms.Content[]" tab="contenu">
+      <label xml:lang="fr">Voir aussi</label>
+    </field>
+    <field name="motsCles" editor="category" required="false" compactDisplay="false" type="java.util.TreeSet" chooser="keyword" exclusive="false" root="$jcmsplugin.observatoire.category.motscle.root" ml="false" descriptionType="tooltip" searchable="false" html="false" checkHtml="true" displayRoot="false" tab="contenu">
+      <label xml:lang="fr">Mots clés</label>
+    </field>
+    <field name="portletEncartBas" editor="link" required="false" compactDisplay="false" type="com.jalios.jcms.portlet.PortalElement[]" tab="contenu">
+      <label xml:lang="fr">Portlet encart bas</label>
+    </field>
+    <field name="categorieDeNavigation" editor="category" required="true" compactDisplay="false" tab="rattachement" type="java.util.TreeSet" chooser="tree" exclusive="false" root="$jcmsplugin.socle.category.categorieDeNavigation.root" ml="false" descriptionType="tooltip" searchable="false" html="false" checkHtml="true" displayRoot="false">
+      <label xml:lang="fr">Catégorie de navigation</label>
+    </field>
+    <field name="miseEnAvant" editor="category" required="false" compactDisplay="false" tab="rattachement" type="java.util.TreeSet" chooser="tree" exclusive="false" root="$jcmsplugin.socle.miseEnAvant.root" ml="false" descriptionType="tooltip" searchable="false" html="false" checkHtml="true" displayRoot="false">
+      <label xml:lang="fr">Mise en avant</label>
+    </field>
+  </fields>
+  <tabs>
+    <tab id="contenu">
+      <label xml:lang="fr">Contenu</label>
+    </tab>
+    <tab id="rattachement">
+      <label xml:lang="fr">Navigation et classement</label>
+    </tab>
+  </tabs>  
+</type>
+

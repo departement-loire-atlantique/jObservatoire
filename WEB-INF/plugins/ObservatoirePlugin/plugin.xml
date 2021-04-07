@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plugin PUBLIC "-//JALIOS//DTD JCMS-PLUGIN 1.7//EN" "https://community.jalios.com/dtd/jcms-plugin-1.7.dtd">
+
+<plugin name="ObservatoirePlugin" version="0.1" author="DEP44" license="DEP44" initialize="true" jcms="" order="0" url="" jsync="false" appserver="">
+  
+  <label xml:lang="fr">ObservatoirePlugin</label>
+  <description xml:lang="fr">Fonctions spécifiques au site Observatoire</description>
+ 
+  <dependencies>
+    <dependency name="SoclePlugin" />
+  </dependencies>
+
+  <types>  
+     <type name="ArticleObservatoire" />
+ 
+     <templates type="ArticleObservatoire">
+            <template name="default" file="doArticleObservatoireFullDisplay.jsp" usage="full">
+                <label xml:lang="fr">DS44 : gabarit par défaut</label>
+            </template>
+     </templates>
+  </types>
+  
+  <java-classes>
+    <java package="fr.cg44.plugin.observatoire"/>   
+  </java-classes>  
+ 
+  <private-files>
+    <directory path="properties" />
+  </private-files>
+  <public-files>
+    <directory path="images" />
+    <directory path="js" />
+    <directory path="docs" />
+    <directory path="jsp" />
+  </public-files>
+</plugin>
+

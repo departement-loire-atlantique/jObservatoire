@@ -1,5 +1,5 @@
-# jObservatoire
-Module dédié au site Observatoire
+# jPlaObservatoire
+Module dédié au site Observatoire 
 
 <p>
   <a href="https://travis-ci.com/organizations/departement-loire-atlantique">
