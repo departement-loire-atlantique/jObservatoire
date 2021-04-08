@@ -1,0 +1,6 @@
+jcmsplugin.observatoire.carte.libelle-court: Cartes
+jcmsplugin.observatoire.stat.libelle-court: Stats
+jcmsplugin.observatoire.etude.libelle-court: Etudes et veille
+jcmsplugin.observatoire.carte.picto: icon-map
+jcmsplugin.observatoire.stat.picto: icon-stats
+jcmsplugin.observatoire.etude.picto: icon-etudes
