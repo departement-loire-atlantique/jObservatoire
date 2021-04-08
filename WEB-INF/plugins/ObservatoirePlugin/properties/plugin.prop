@@ -9,3 +9,6 @@ $jcmsplugin.observatoire.contenusAgents.group :  r_5467
 
 # Propriétés surchargées de Socle
 $jcmsplugin.socle.category.categorieDeNavigation.root: j_5
+
+# Content template
+media.data-template.tuileHorizontaleDark.ArticleObservatoire: /plugins/ObservatoirePlugin/jsp/templates/doArticleObservatoireTuileHorizontale.jsp
