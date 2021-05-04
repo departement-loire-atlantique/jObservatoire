@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <type name="ArticleObservatoire" superclass="com.jalios.jcms.Content" debatable="false" unitFieldEdition="true" audienced="false" categoryTab="true" readRightTab="true" updateRightTab="true" templateTab="true" workflowTab="true" advancedTab="true" titleML="true">
-  <label xml:lang="fr">Article observatoire</label>
+  <label xml:lang="fr">Ressource</label>
   <title ml="true">
     <label xml:lang="en">Title</label>
     <label xml:lang="fr">Titre</label>
