@@ -21,9 +21,14 @@
 
                 <%-- Colonne de gauche --%>
                 <div class="col-7">
-                    <jalios:if predicate='<%= Util.notEmpty(obj.getDescription()) %>'>
-                        <jalios:wysiwyg><%= obj.getDescription() %></jalios:wysiwyg>
+                    <jalios:if predicate='<%= Util.notEmpty(obj.getDescription(userLang)) %>'>
+                        <jalios:wysiwyg><%= obj.getDescription(userLang) %></jalios:wysiwyg>
                     </jalios:if>
+                    
+                    <%-- Contenu --%>
+                    <jalios:if predicate='<%= Util.notEmpty(obj.getContenu(userLang)) %>'>
+                        <jalios:wysiwyg><%= obj.getContenu(userLang) %></jalios:wysiwyg>            
+                    </jalios:if>                    
                     
 		            <%-- On n'affiche pas certaines infos si on n'est pas dans les rubriques "cartes / stats / etudes" --%>
 		            <jalios:if predicate='<%= Util.notEmpty(ObservatoireUtils.getTypeArticleObservatoire(obj)) %>'>
@@ -41,7 +46,7 @@
 		            
 		            <%-- Téléchargement --%>
                     <jalios:if predicate="<%= Util.notEmpty(obj.getFichiers()) %>">
-                        <section class="ds44-box ds44-theme">
+                        <section class="ds44-box ds44-theme ds44-mtb4">
                             <div class="ds44-innerBoxContainer">
                                 <p role="heading" aria-level="2" class="ds44-box-heading"><%= glp("jcmsplugin.socle.fichepublication.telecharger") %></p>
                                 
@@ -65,31 +70,42 @@
                     
                     <%-- Mots clés --%>
 	                <jalios:if predicate='<%= Util.notEmpty(obj.getMotsCles(loggedMember)) %>'>
-	                    <div>
-	                        <h2><%= glp("jcmsplugin.socle.motscles") %></h2>
-	                        <ul>
+	                    <section class="ds44-mtb4">
+	                        <h3><%= glp("jcmsplugin.socle.motscles") %></h3>
+	                        <ul class="ds44-list ds44-list--tag ds44--m-padding">
 								<jalios:foreach collection="<%= obj.getMotsCles(loggedMember) %>" type="Category" name="itCategory">
-									<li><%=itCategory%></li>
+									<li><a href="#" class="ds44-btnStd ds44-btn--invert ds44-btnStd--tag" title='<%= glp("jcmsplugin.observatoire.motcle.title", itCategory)%>'><span class="ds44-btnInnerText"><%=itCategory%></span></a></li>
 								</jalios:foreach>
 							</ul>
-	                    </div>
+	                    </section>
 	                </jalios:if>                    
                 
                     <%-- Voir aussi --%>
 	                <jalios:if predicate='<%= Util.notEmpty(obj.getVoirAussi()) %>'>
-						<section class="ds44-innerBoxContainer ds44-borderContainer">
-						  <h2 class="h2-like"><%= glp("jcmsplugin.socle.voiraussi") %></h2>
-						      <ul>
+                        <section class="ds44-mtb4 ds44-innerBoxContainer ds44-borderContainer">
+                            <h2 class="h2-like"><%= glp("jcmsplugin.socle.voiraussi") %></h2>
+                            <ul class="ds44-list">
 								<jalios:foreach name="itData" type="com.jalios.jcms.Content" array="<%=obj.getVoirAussi()%>">
 									<jalios:if predicate='<%=itData != null && itData.canBeReadBy(loggedMember)%>'>
-										<li class="<%=ObservatoireUtils.getTypeArticleObservatoire(itData)%>">
-											<jalios:link data='<%=itData%>' />
+                                        <%
+									    String typeArticle = ObservatoireUtils.getTypeArticleObservatoire(itData);
+                                        String icone = "";
+									    if(Util.notEmpty(typeArticle)){
+									       icone = glp("jcmsplugin.observatoire."+typeArticle+".picto");
+								        }
+                                        %>
+                                        <li class="mts">
+                                            <p class="ds44-docListElem">
+                                                <i class="icon <%= icone %> ds44-docListIco" aria-hidden="true"></i>
+                                                <jalios:link data="<%= itData %>"/>
+                                            </p>
 										</li>
 									</jalios:if>
 								</jalios:foreach>
 							</ul>
 						</section>	                
-	                </jalios:if>                                       
+	                </jalios:if>
+	                
                 </div>
                 
                 <div class="col-1 grid-offset ds44-hide-tiny-to-medium"></div>
@@ -100,23 +116,23 @@
                     <jalios:if predicate='<%= Util.notEmpty(obj.getIllustrationPrincipale()) %>'>
 		                <div class="main-illustration hidden-phone">
 		                    <img class="mainImage" src="<%=Util.encodeUrl(obj.getIllustrationPrincipale())%>" alt="" />
-		                        <jalios:if predicate="<%= Util.notEmpty(obj.getLegende()) || Util.notEmpty(obj.getCopyright()) %>">
+		                        <jalios:if predicate="<%= Util.notEmpty(obj.getLegende(userLang)) || Util.notEmpty(obj.getCopyright(userLang)) %>">
 		                            <div class="legend">
-		                                <jalios:if predicate="<%= Util.notEmpty(obj.getCopyright()) %>">
-		                                    <p class="copyright"><%= obj.getCopyright() %></p>
+		                                <jalios:if predicate="<%= Util.notEmpty(obj.getCopyright(userLang)) %>">
+		                                    <p class="copyright"><%= obj.getCopyright(userLang) %></p>
 		                                </jalios:if>
-		                                <jalios:if predicate="<%= Util.notEmpty(obj.getLegende()) && Util.notEmpty(obj.getCopyright()) %>"> - </jalios:if>
-		                                <jalios:if predicate="<%= Util.notEmpty(obj.getLegende()) %>">
-		                                    <p><%= obj.getLegende() %></p>
+		                                <jalios:if predicate="<%= Util.notEmpty(obj.getLegende(userLang)) && Util.notEmpty(obj.getCopyright(userLang)) %>"> - </jalios:if>
+		                                <jalios:if predicate="<%= Util.notEmpty(obj.getLegende(userLang)) %>">
+		                                    <p><%= obj.getLegende(userLang) %></p>
 		                                </jalios:if>
 		                            </div>
 		                        </jalios:if>
 		                </div>
                     </jalios:if>
                     
-                    <jalios:if predicate='<%= Util.notEmpty(obj.getTexteencart()) %>'>
+                    <jalios:if predicate='<%= Util.notEmpty(obj.getTexteencart(userLang)) %>'>
 		                <div class="gray-part">
-		                    <jalios:wysiwyg><%= obj.getTexteencart() %></jalios:wysiwyg> 
+		                    <jalios:wysiwyg><%= obj.getTexteencart(userLang) %></jalios:wysiwyg> 
 		                </div>
                     </jalios:if>
             
