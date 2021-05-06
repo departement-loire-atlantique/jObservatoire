@@ -14,10 +14,15 @@
      <type name="ArticleObservatoire" />
  
      <templates type="ArticleObservatoire">
-            <template name="default" file="doArticleObservatoireFullDisplay.jsp" usage="full">
-                <label xml:lang="fr">DS44 : gabarit par défaut</label>
-            </template>
+        <template name="default" file="doArticleObservatoireFullDisplay.jsp" usage="full">
+            <label xml:lang="fr">DS44 : gabarit par défaut</label>
+        </template>
      </templates>
+    <templates type="PortletIFrame">
+        <template name="carteUne" file="doPortletIFrameCarteUne.jsp" usage="box">
+            <label xml:lang="fr">DS44 : gabarit carte à la une</label>
+        </template>
+    </templates>
   </types>
   
   <java-classes>
