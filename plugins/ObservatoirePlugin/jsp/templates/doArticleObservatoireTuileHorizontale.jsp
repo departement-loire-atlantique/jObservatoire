@@ -13,8 +13,8 @@ if (data == null) {
 Publication pub = (Publication) data;
 
 String typeArticle = "";
-String footerText = "";
-String footerIcon = "";
+String typeArticleLibelle = "";
+String typeArticleIcone = "";
 %>
 
 <%@include file="../../../SoclePlugin/jsp/templates/tuileCommon.jsp" %>
@@ -24,8 +24,8 @@ ArticleObservatoire obj = (ArticleObservatoire)pub;
 typeArticle = ObservatoireUtils.getTypeArticleObservatoire(obj);
 
 if(Util.notEmpty(typeArticle)){
-  footerText = glp("jcmsplugin.observatoire."+typeArticle+".libelle-court");
-  footerIcon = glp("jcmsplugin.observatoire."+typeArticle+".picto");
+  typeArticleLibelle = glp("jcmsplugin.observatoire."+typeArticle+".libelle-court");
+  typeArticleIcone = glp("jcmsplugin.observatoire."+typeArticle+".icone");
 }
 %>
 
@@ -51,7 +51,7 @@ if(Util.notEmpty(typeArticle)){
             </p>
                         
 			<p class="ds44-cardLocalisation">
-			    <i class="icon <%= footerIcon %>" aria-hidden="true"></i><span class="ds44-iconInnerText"><%= footerText %></span>
+			    <i class="icon <%= typeArticleIcone %>" aria-hidden="true"></i><span class="ds44-iconInnerText"><%= typeArticleLibelle %></span>
 			</p>
             
             <i class="icon icon-arrow-right ds44-cardArrow" aria-hidden="true"></i>
