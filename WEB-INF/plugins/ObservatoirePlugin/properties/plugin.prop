@@ -13,3 +13,4 @@ $jcmsplugin.socle.category.categorieDeNavigation.root: j_5
 # Content template
 media.data-template.tuileHorizontaleDark.ArticleObservatoire: /plugins/ObservatoirePlugin/jsp/templates/doArticleObservatoireTuileHorizontale.jsp
 media.data-template.search.ArticleObservatoire: /plugins/ObservatoirePlugin/jsp/cards/doArticleObservatoireCard.jsp
+media.data-template.card.ArticleObservatoire: /plugins/ObservatoirePlugin/jsp/cards/doArticleObservatoireCard.jsp
