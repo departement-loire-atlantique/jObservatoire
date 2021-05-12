@@ -25,7 +25,7 @@ if(Util.notEmpty(typeArticle)){
     <div class="ds44-card__section">
         <div class="ds44-innerBoxContainer">
             <p role="heading" aria-level="3" class="h4-like ds44-cardTitle">
-                <a href="#" class="ds44-card__globalLink"><%= pub.getTitle(userLang) %></a>
+                <a href="<%= pub.getDisplayUrl(userLocale) %>" class="ds44-card__globalLink"><%= pub.getTitle(userLang) %></a>
             </p>
             <hr class="mbs" aria-hidden="true">
             <p class="ds44-docListElem ds44-mt-std">
