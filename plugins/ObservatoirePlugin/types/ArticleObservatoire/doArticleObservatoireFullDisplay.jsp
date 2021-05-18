@@ -69,12 +69,29 @@
                     </jalios:if>
                     
                     <%-- Mots clés --%>
-	                <jalios:if predicate='<%= Util.notEmpty(obj.getMotsCles(loggedMember)) %>'>
+                    <% Publication portletSearchPub = channel.getPublication(channel.getProperty("jcmsplugin.socle.recherche.portletsearch.id")); %>
+	                <jalios:if predicate='<%= Util.notEmpty(obj.getMotsCles(loggedMember)) && Util.notEmpty(portletSearchPub) && portletSearchPub instanceof PortletRechercheFacettes %>'>
+	                    <%
+                        // Lien vers la recherche : Récupère les information de la portlet de recherche principale et de sa facette mot-clés
+                        PortletRechercheFacettes portletSearch = (PortletRechercheFacettes) channel.getPublication(channel.getProperty("jcmsplugin.socle.recherche.portletsearch.id"));
+                        // N'affiche pas les mot-clé si la facette mot-clé n'est pas présente en 3 eme position
+	                    if(portletSearch.getFacettesPrincipales().length < 3 || !(portletSearch.getFacettesPrincipales()[2] instanceof PortletFacetteCategorie)){
+                          break;
+                        }
+                        PortletFacetteCategorie portletFacetteMotCle = (PortletFacetteCategorie) portletSearch.getFacettesPrincipales()[2];                           
+                        String portetSearchLink = channel.getPublication("$jcmsplugin.socle.recherche.facettes.portal").getDisplayUrl(userLocale) + "?boxId=" + portletSearch.getId();                       
+                        %>
+             
 	                    <section class="ds44-mtb4">
 	                        <h3><%= glp("jcmsplugin.socle.motscles") %></h3>
-	                        <ul class="ds44-list ds44-list--tag ds44--m-padding">
+	                        <ul class="ds44-list ds44-list--tag ds44--m-padding">	                          
 								<jalios:foreach collection="<%= obj.getMotsCles(loggedMember) %>" type="Category" name="itCategory">
-									<li><a href="#" class="ds44-btnStd ds44-btn--invert ds44-btnStd--tag" title='<%= glp("jcmsplugin.observatoire.motcle.title", itCategory)%>'><span class="ds44-btnInnerText"><%=itCategory%></span></a></li>
+								    <%
+								    // Génère le lien vers la recherche avec le mot-clé de sélectionné
+								    String itSearchLink = portetSearchLink + "&cids" + glp("jcmsplugin.socle.facette.form-element") + "-" + portletSearch.getId() + portletFacetteMotCle.getId() + "[value]=" + itCategory.getId() + 
+								        "&cids" + glp("jcmsplugin.socle.facette.form-element") + "-" + portletSearch.getId() + portletFacetteMotCle.getId() + "[text]=" + itCategory.getName(userLang);
+								    %>
+									<li><a href="<%= itSearchLink %>" class="ds44-btnStd ds44-btn--invert ds44-btnStd--tag" title='<%= glp("jcmsplugin.observatoire.motcle.title", itCategory)%>'><span class="ds44-btnInnerText"><%=itCategory%></span></a></li>
 								</jalios:foreach>
 							</ul>
 	                    </section>
