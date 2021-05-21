@@ -22,7 +22,9 @@
                 <%-- Colonne de gauche --%>
                 <div class="col-7">
                     <jalios:if predicate='<%= Util.notEmpty(obj.getDescription(userLang)) %>'>
-                        <jalios:wysiwyg><%= obj.getDescription(userLang) %></jalios:wysiwyg>
+                        <div class="ds44-introduction">
+                            <jalios:wysiwyg><%= obj.getDescription(userLang) %></jalios:wysiwyg>
+                        </div>
                     </jalios:if>
                     
                     <%-- Contenu --%>
@@ -131,26 +133,18 @@
                 <aside class="col-4">
                 
                     <jalios:if predicate='<%= Util.notEmpty(obj.getIllustrationPrincipale()) %>'>
-		                <div class="main-illustration hidden-phone">
-		                    <img class="mainImage" src="<%=Util.encodeUrl(obj.getIllustrationPrincipale())%>" alt="" />
-		                        <jalios:if predicate="<%= Util.notEmpty(obj.getLegende(userLang)) || Util.notEmpty(obj.getCopyright(userLang)) %>">
-		                            <div class="legend">
-		                                <jalios:if predicate="<%= Util.notEmpty(obj.getCopyright(userLang)) %>">
-		                                    <p class="copyright"><%= obj.getCopyright(userLang) %></p>
-		                                </jalios:if>
-		                                <jalios:if predicate="<%= Util.notEmpty(obj.getLegende(userLang)) && Util.notEmpty(obj.getCopyright(userLang)) %>"> - </jalios:if>
-		                                <jalios:if predicate="<%= Util.notEmpty(obj.getLegende(userLang)) %>">
-		                                    <p><%= obj.getLegende(userLang) %></p>
-		                                </jalios:if>
-		                            </div>
-		                        </jalios:if>
-		                </div>
+                        <ds:figurePicture imgCss="ds44-w100 ds44-imgRatio" pictureCss="ds44-legendeContainer ds44-container-imgRatio" 
+                            format="unchanged" image="<%= obj.getIllustrationPrincipale() %>" imageMobile="<%= obj.getImageMobile() %>"
+                            alt="<%= obj.getTexteAlternatif(userLang) %>"
+                            copyright="<%= obj.getCopyright(userLang) %>" legend="<%= obj.getLegende(userLang) %>"/>
                     </jalios:if>
                     
                     <jalios:if predicate='<%= Util.notEmpty(obj.getTexteencart(userLang)) %>'>
-		                <div class="gray-part">
-		                    <jalios:wysiwyg><%= obj.getTexteencart(userLang) %></jalios:wysiwyg> 
-		                </div>
+		                <section class="ds44-box ds44-bgGray mtm">
+                            <div class="ds44-innerBoxContainer">
+                                <jalios:wysiwyg><%= obj.getTexteencart(userLang) %></jalios:wysiwyg>
+                            </div>
+                        </section> 
                     </jalios:if>
             
 		            <jalios:if predicate='<%= Util.notEmpty(obj.getPortletEncartBas()) %>'>
