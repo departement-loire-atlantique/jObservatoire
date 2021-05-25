@@ -110,7 +110,7 @@
 									    String typeArticle = ObservatoireUtils.getTypeArticleObservatoire(itData);
                                         String icone = "";
 									    if(Util.notEmpty(typeArticle)){
-									       icone = glp("jcmsplugin.observatoire."+typeArticle+".picto");
+									       icone = glp("jcmsplugin.observatoire."+typeArticle+".icone");
 								        }
                                         %>
                                         <li class="mts">
