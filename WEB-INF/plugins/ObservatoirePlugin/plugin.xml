@@ -33,6 +33,10 @@
   <java-classes>
     <java package="fr.cg44.plugin.observatoire"/>   
   </java-classes>  
+  
+  <plugincomponents>
+    <policyfilter class="fr.cg44.plugin.observatoire.policyfilter.ContenusRightPolicyFilter" />
+  </plugincomponents>  
  
   <private-files>
     <directory path="properties" />
