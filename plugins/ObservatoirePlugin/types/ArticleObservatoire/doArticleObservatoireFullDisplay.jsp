@@ -55,9 +55,8 @@ boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) &&
                         <section class="ds44-box ds44-theme ds44-mtb4">
                             <div class="ds44-innerBoxContainer">
                                 <p role="heading" aria-level="2" class="ds44-box-heading"><%= glp("jcmsplugin.socle.fichepublication.telecharger") %></p>
-                                
-		                        <jalios:foreach name="itDoc" type="com.jalios.jcms.FileDocument" array="<%= obj.getFichiers() %>">
-                                    <ul class="ds44-list">
+                                <ul class="ds44-list">                                
+			                        <jalios:foreach name="itDoc" type="com.jalios.jcms.FileDocument" array="<%= obj.getFichiers() %>">
 			                            <jalios:if predicate='<%= itDoc != null && itDoc.canBeReadBy(loggedMember) %>'>
 			                               <% 
 			                                String title = HttpUtil.encodeForHTMLAttribute(itDoc.getTitle());
@@ -68,8 +67,8 @@ boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) &&
 			                              <jalios:include pub="<%= itDoc %>" usage="embed"/>
 			                            </li>
 			                            </jalios:if>
-                                    </ul>  
-                                </jalios:foreach>
+	                                </jalios:foreach>
+                                </ul>
                             </div>
                         </section>
                     </jalios:if>
@@ -85,22 +84,24 @@ boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) &&
 					            String[] liensExternesUrls = obj.getLiensExternes();
 					            String[] liensExternesLibelles = obj.getLibellesLiensExternes();
 					            %>
-				                <jalios:foreach array="<%= liensExternesUrls %>" name="itUrl" type="String">
-				                    <jalios:if predicate="<%= Util.notEmpty(itUrl) %>">
-				                        <div class="blocLiens">
-				                        <%
-				                            // Récupération du titre
-				                            String linkTitle = "";
-				                            try {
-				                                linkTitle = liensExternesLibelles[itCounter - 1];                         
-				                            } catch(IndexOutOfBoundsException e) {
-				                                linkTitle = itUrl;
-				                            }
-				                         %>
-				                            <a href="<%= itUrl %>" title='<%= glp("jcmsplugin.socle.lien.site.nouvelonglet", HttpUtil.encodeForHTMLAttribute(linkTitle)) %>' target="_blank"><%= linkTitle %></a>
-				                        </div>
-				                    </jalios:if>
-				               </jalios:foreach>
+					            <ul class="ds44-list">
+					                <jalios:foreach array="<%= liensExternesUrls %>" name="itUrl" type="String">
+					                    <jalios:if predicate="<%= Util.notEmpty(itUrl) %>">
+					                        <%
+					                        // Récupération du titre
+					                        String linkTitle = "";
+					                        try {
+					                          linkTitle = liensExternesLibelles[itCounter - 1];                         
+					                          } catch(IndexOutOfBoundsException e) {
+					                            linkTitle = itUrl;
+					                            }
+					                         %>
+                                            <li class="mts">
+                                                <a href="<%= itUrl %>" title='<%= glp("jcmsplugin.socle.lien.site.nouvelonglet", HttpUtil.encodeForHTMLAttribute(linkTitle)) %>' target="_blank"><%= linkTitle %></a>
+                                            </li>
+					                    </jalios:if>
+					               </jalios:foreach>
+                                </ul>
 		                  </div>
                         </section>
 		            </jalios:if>
@@ -116,10 +117,10 @@ boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) &&
 					                String[] liensOpendataUrls = obj.getLiensOpendata();
 					                String[] liensOpendataLibelles = obj.getLibellesLiensOpendata();
 					            %>
-				                <jalios:foreach array="<%= liensOpendataUrls %>" name="itUrl" type="String">
-				                    <jalios:if predicate="<%= Util.notEmpty(itUrl) %>">
-				                        <div class="blocLiens">
-				                        <%
+					            <ul class="ds44-list">
+					                <jalios:foreach array="<%= liensOpendataUrls %>" name="itUrl" type="String">
+					                    <jalios:if predicate="<%= Util.notEmpty(itUrl) %>">
+                                            <%
 				                            // Récupération du titre
 				                            String linkTitle = "";
 				                            try {
@@ -127,11 +128,13 @@ boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) &&
 				                            } catch(IndexOutOfBoundsException e) {
 				                                linkTitle = itUrl;
 				                            }
-				                         %>
-				                            <a href="<%= itUrl %>" title='<%= glp("jcmsplugin.socle.opendata.link.title", HttpUtil.encodeForHTMLAttribute(linkTitle)) %>' target="_blank"><%= glp("jcmsplugin.socle.opendata.link.label", linkTitle)%></a>
-				                        </div>
-				                    </jalios:if>
-				               </jalios:foreach>
+					                         %>
+					                         <li class="mts">
+                                                <a href="<%= itUrl %>" title='<%= glp("jcmsplugin.socle.opendata.link.title", HttpUtil.encodeForHTMLAttribute(linkTitle)) %>' target="_blank"><%= glp("jcmsplugin.socle.opendata.link.label", linkTitle)%></a>
+                                            </li>
+					                    </jalios:if>
+					               </jalios:foreach>
+                                </ul>
                             </div>
                         </section>
 		            </jalios:if>                    
