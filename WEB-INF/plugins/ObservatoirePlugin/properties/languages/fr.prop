@@ -6,3 +6,5 @@ jcmsplugin.observatoire.stat.icone: icon-stats
 jcmsplugin.observatoire.etude.icone: icon-etudes
 jcmsplugin.observatoire.motcle.title : Afficher les pages avec le mot-clé : {0} 
 jcmsplugin.observatoire.carteALaUne: La carte à la une
+jcmsplugin.observatoire.liens-utiles: Liens utiles
+jcmsplugin.observatoire.liens-opendata: Liens opendata

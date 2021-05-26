@@ -5,6 +5,10 @@
 %><%@ include file='/jcore/doInitPage.jspf' %><%
 %><% ArticleObservatoire obj = (ArticleObservatoire)request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
 %><%@ include file='/front/doFullDisplay.jspf' %>
+<%
+boolean notEmptyLiensExternes = Util.notEmpty(obj.getLibellesLiensExternes()) && Util.notEmpty(obj.getLiensExternes());
+boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) && Util.notEmpty(obj.getLiensOpendata());
+%>
 
 <main id="content" role="main">
 
@@ -51,9 +55,8 @@
                         <section class="ds44-box ds44-theme ds44-mtb4">
                             <div class="ds44-innerBoxContainer">
                                 <p role="heading" aria-level="2" class="ds44-box-heading"><%= glp("jcmsplugin.socle.fichepublication.telecharger") %></p>
-                                
-		                        <jalios:foreach name="itDoc" type="com.jalios.jcms.FileDocument" array="<%= obj.getFichiers() %>">
-                                    <ul class="ds44-list">
+                                <ul class="ds44-list">                                
+			                        <jalios:foreach name="itDoc" type="com.jalios.jcms.FileDocument" array="<%= obj.getFichiers() %>">
 			                            <jalios:if predicate='<%= itDoc != null && itDoc.canBeReadBy(loggedMember) %>'>
 			                               <% 
 			                                String title = HttpUtil.encodeForHTMLAttribute(itDoc.getTitle());
@@ -64,11 +67,77 @@
 			                              <jalios:include pub="<%= itDoc %>" usage="embed"/>
 			                            </li>
 			                            </jalios:if>
-                                    </ul>  
-                                </jalios:foreach>
+	                                </jalios:foreach>
+                                </ul>
                             </div>
                         </section>
                     </jalios:if>
+                    
+                    <%-- Liens externes --%>
+                    <jalios:if predicate="<%= notEmptyLiensExternes %>">
+                        <section class="ds44-box ds44-theme ds44-mtb4">
+                            <div class="ds44-innerBoxContainer">
+                                <div class="ds44-flex-container ds44-flex-valign-center">
+                                    <p role="heading" aria-level="2" class="ds44-box-heading"><%= glp("jcmsplugin.observatoire.liens-utiles") %></p>
+                                </div>
+					            <%
+					            String[] liensExternesUrls = obj.getLiensExternes();
+					            String[] liensExternesLibelles = obj.getLibellesLiensExternes();
+					            %>
+					            <ul class="ds44-list">
+					                <jalios:foreach array="<%= liensExternesUrls %>" name="itUrl" type="String">
+					                    <jalios:if predicate="<%= Util.notEmpty(itUrl) %>">
+					                        <%
+					                        // Récupération du titre
+					                        String linkTitle = "";
+					                        try {
+					                          linkTitle = liensExternesLibelles[itCounter - 1];                         
+					                          } catch(IndexOutOfBoundsException e) {
+					                            linkTitle = itUrl;
+					                            }
+					                         %>
+                                            <li class="mts">
+                                                <a href="<%= itUrl %>" title='<%= glp("jcmsplugin.socle.lien.site.nouvelonglet", HttpUtil.encodeForHTMLAttribute(linkTitle)) %>' target="_blank"><%= linkTitle %></a>
+                                            </li>
+					                    </jalios:if>
+					               </jalios:foreach>
+                                </ul>
+		                  </div>
+                        </section>
+		            </jalios:if>
+		            
+		            <%-- Liens opendata --%>
+		            <jalios:if predicate="<%= notEmptyLiensOpendata %>">
+                        <section class="ds44-box ds44-theme ds44-mtb4">
+                            <div class="ds44-innerBoxContainer">
+                                <div class="ds44-flex-container ds44-flex-valign-center">
+                                    <p role="heading" aria-level="2" class="ds44-box-heading"><%= glp("jcmsplugin.observatoire.liens-opendata") %></p>
+                                </div>
+					            <%
+					                String[] liensOpendataUrls = obj.getLiensOpendata();
+					                String[] liensOpendataLibelles = obj.getLibellesLiensOpendata();
+					            %>
+					            <ul class="ds44-list">
+					                <jalios:foreach array="<%= liensOpendataUrls %>" name="itUrl" type="String">
+					                    <jalios:if predicate="<%= Util.notEmpty(itUrl) %>">
+                                            <%
+				                            // Récupération du titre
+				                            String linkTitle = "";
+				                            try {
+				                                linkTitle = liensOpendataLibelles[itCounter - 1];                         
+				                            } catch(IndexOutOfBoundsException e) {
+				                                linkTitle = itUrl;
+				                            }
+					                         %>
+					                         <li class="mts">
+                                                <a href="<%= itUrl %>" title='<%= glp("jcmsplugin.socle.opendata.link.title", HttpUtil.encodeForHTMLAttribute(linkTitle)) %>' target="_blank"><%= glp("jcmsplugin.socle.opendata.link.label", linkTitle)%></a>
+                                            </li>
+					                    </jalios:if>
+					               </jalios:foreach>
+                                </ul>
+                            </div>
+                        </section>
+		            </jalios:if>                    
                     
                     <%-- Mots clés --%>
                     <% Publication portletSearchPub = channel.getPublication(channel.getProperty("jcmsplugin.socle.recherche.portletsearch.id")); %>
