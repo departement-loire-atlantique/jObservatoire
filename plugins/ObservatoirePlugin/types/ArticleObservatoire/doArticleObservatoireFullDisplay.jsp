@@ -202,7 +202,7 @@ boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) &&
                 <aside class="col-4">
                 
                     <jalios:if predicate='<%= Util.notEmpty(obj.getIllustrationPrincipale()) %>'>
-                        <ds:figurePicture imgCss="ds44-w100 ds44-imgRatio" pictureCss="ds44-container-imgRatio" 
+                        <ds:figurePicture imgCss="ds44-w100" pictureCss="ds44-legendeContainer" 
                             format="custom" width="370" height="500" image="<%= obj.getIllustrationPrincipale() %>" imageMobile="<%= obj.getImageMobile() %>"
                             alt="<%= obj.getTexteAlternatif(userLang) %>"
                             copyright="<%= obj.getCopyright(userLang) %>" legend="<%= obj.getLegende(userLang) %>"/>
