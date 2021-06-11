@@ -8,6 +8,7 @@
 <%
 boolean notEmptyLiensExternes = Util.notEmpty(obj.getLibellesLiensExternes()) && Util.notEmpty(obj.getLiensExternes());
 boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) && Util.notEmpty(obj.getLiensOpendata());
+boolean hasAside = Util.notEmpty(obj.getIllustrationPrincipale()) || Util.notEmpty(obj.getTexteencart(userLang)) || Util.notEmpty(obj.getPortletEncartBas());
 %>
 
 <main id="content" role="main">
@@ -24,7 +25,7 @@ boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) &&
             <div class="grid-12-small-1">
 
                 <%-- Colonne de gauche --%>
-                <div class="col-7">
+                <div class='col-<%= hasAside ? "7" : "12" %>'>
                     <jalios:if predicate='<%= Util.notEmpty(obj.getDescription(userLang)) %>'>
                         <div class="ds44-introduction">
                             <jalios:wysiwyg><%= obj.getDescription(userLang) %></jalios:wysiwyg>
@@ -196,34 +197,37 @@ boolean notEmptyLiensOpendata = Util.notEmpty(obj.getLibellesLiensOpendata()) &&
 	                
                 </div>
                 
-                <div class="col-1 grid-offset ds44-hide-tiny-to-medium"></div>
-                
                 <!-- Colonne de droite -->
-                <aside class="col-4">
+                <jalios:if predicate="<%= hasAside %>">
                 
-                    <jalios:if predicate='<%= Util.notEmpty(obj.getIllustrationPrincipale()) %>'>
-                        <ds:figurePicture imgCss="ds44-w100" pictureCss="ds44-legendeContainer" 
-                            format="custom" width="370" height="500" image="<%= obj.getIllustrationPrincipale() %>" imageMobile="<%= obj.getImageMobile() %>"
-                            alt="<%= obj.getTexteAlternatif(userLang) %>"
-                            copyright="<%= obj.getCopyright(userLang) %>" legend="<%= obj.getLegende(userLang) %>"/>
-                    </jalios:if>
-                    
-                    <jalios:if predicate='<%= Util.notEmpty(obj.getTexteencart(userLang)) %>'>
-		                <section class="ds44-box ds44-bgGray mtm">
-                            <div class="ds44-innerBoxContainer">
-                                <jalios:wysiwyg><%= obj.getTexteencart(userLang) %></jalios:wysiwyg>
-                            </div>
-                        </section> 
-                    </jalios:if>
-            
-		            <jalios:if predicate='<%= Util.notEmpty(obj.getPortletEncartBas()) %>'>
-		                <jalios:foreach name="itPortletEncartBas" type="PortalElement" array="<%= obj.getPortletEncartBas() %>">
-                            <jalios:include pub="<%= itPortletEncartBas %>"/>
-                        </jalios:foreach> 
-		            </jalios:if>                    
-                    
-                </aside>
+                    <div class="col-1 grid-offset ds44-hide-tiny-to-medium"></div>
                 
+	                <aside class="col-4">
+	                
+	                    <jalios:if predicate='<%= Util.notEmpty(obj.getIllustrationPrincipale()) %>'>
+	                        <ds:figurePicture imgCss="ds44-w100" pictureCss="ds44-legendeContainer" 
+	                            format="custom" width="370" height="500" image="<%= obj.getIllustrationPrincipale() %>" imageMobile="<%= obj.getImageMobile() %>"
+	                            alt="<%= obj.getTexteAlternatif(userLang) %>"
+	                            copyright="<%= obj.getCopyright(userLang) %>" legend="<%= obj.getLegende(userLang) %>"/>
+	                    </jalios:if>
+	                    
+	                    <jalios:if predicate='<%= Util.notEmpty(obj.getTexteencart(userLang)) %>'>
+			                <section class="ds44-box ds44-bgGray mtm">
+	                            <div class="ds44-innerBoxContainer">
+	                                <jalios:wysiwyg><%= obj.getTexteencart(userLang) %></jalios:wysiwyg>
+	                            </div>
+	                        </section> 
+	                    </jalios:if>
+	            
+			            <jalios:if predicate='<%= Util.notEmpty(obj.getPortletEncartBas()) %>'>
+			                <jalios:foreach name="itPortletEncartBas" type="PortalElement" array="<%= obj.getPortletEncartBas() %>">
+	                            <jalios:include pub="<%= itPortletEncartBas %>"/>
+	                        </jalios:foreach> 
+			            </jalios:if>                    
+	                    
+	                </aside>
+	                
+                </jalios:if>
             </div>
         </div>
         
