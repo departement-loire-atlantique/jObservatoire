@@ -103,7 +103,9 @@ boolean hasAside = Util.notEmpty(obj.getIllustrationPrincipale()) || Util.notEmp
 	                                     }
 	                                   %>
                                         <li class="mts">
-                                            <a href="<%= itUrl %>" title='<%= glp("jcmsplugin.socle.lien.site.nouvelonglet", HttpUtil.encodeForHTMLAttribute(linkTitle)) %>' target="_blank"><%= linkTitle %></a>
+                                            <div class="ds44-docListElem"><i class="icon icon-link ds44-docListIco" aria-hidden="true"></i>
+                                                <a href="<%= itUrl %>" title='<%= glp("jcmsplugin.socle.lien.site.nouvelonglet", HttpUtil.encodeForHTMLAttribute(linkTitle)) %>' target="_blank"><%= linkTitle %></a>
+                                            </div>
                                         </li>
 	                               </jalios:if>
 	                           </jalios:foreach>
@@ -135,9 +137,12 @@ boolean hasAside = Util.notEmpty(obj.getIllustrationPrincipale()) || Util.notEmp
 								          linkTitle = itUrl;
 								        }
 										%>
-										<li class="mts"><a href="<%=itUrl%>"
-											title='<%=glp("jcmsplugin.socle.opendata.link.title", HttpUtil.encodeForHTMLAttribute(linkTitle))%>'
-											target="_blank"><%=glp("jcmsplugin.socle.opendata.link.label", linkTitle)%></a>
+										<li class="mts">
+                                            <div class="ds44-docListElem"><i class="icon icon-data ds44-docListIco" aria-hidden="true"></i>
+                                                <a href="<%=itUrl%>"
+                                                   title='<%=glp("jcmsplugin.socle.opendata.link.title", HttpUtil.encodeForHTMLAttribute(linkTitle))%>'
+                                                   target="_blank"><%=glp("jcmsplugin.socle.opendata.link.label", linkTitle)%></a>
+                                            </div>
 										</li>
 									</jalios:if>
 								</jalios:foreach>
