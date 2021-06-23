@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="fr.cg44.plugin.socle.SocleUtils"%>
+<%@ page import="fr.cg44.plugin.observatoire.ObservatoireUtils"%>
 <%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file='/jcore/doInitPage.jspf'%>
@@ -27,7 +28,7 @@
 	<ul class="ds44-collapser">
 	   <%-- Si pas de publications on n'affiche pas l'item --%>
         <jalios:foreach collection="<%= level1CatSet %>" type="Category" name="itCatLevel2">
-            <jalios:if predicate="<%= Util.notEmpty(itCatLevel2.getAllPublicationSet()) %>" breakselect="true">
+            <jalios:if predicate='<%= SocleUtils.containsPublications(itCatLevel2, new String[]{"ArticleObservatoire"}, false) %>' breakselect="true">
                 <li class="ds44-collapser_element">
 					<%-- Si présence d'un contenu principal sur la catégorie, alors lien vers ce contenu,
 					      sinon génération des enfants ou lien direct vers la catégorie si pas d'enfants. --%> 
