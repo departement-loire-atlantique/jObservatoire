@@ -218,7 +218,7 @@ boolean hasAside = Util.notEmpty(obj.getIllustrationPrincipale()) || Util.notEmp
 	                    <jalios:if predicate='<%= Util.notEmpty(obj.getIllustrationPrincipale()) %>'>
 	                        <ds:figurePicture imgCss="ds44-w100" pictureCss="ds44-legendeContainer" 
 	                            format="custom" width="370" height="500" image="<%= obj.getIllustrationPrincipale() %>" imageMobile="<%= obj.getImageMobile() %>"
-	                            alt="<%= obj.getTexteAlternatif(userLang) %>"
+	                            alt='<%= Util.notEmpty(obj.getTexteAlternatif(userLang)) ? obj.getTexteAlternatif(userLang) : glp("jcmsplugin.socle.illustration") %>'
 	                            copyright="<%= obj.getCopyright(userLang) %>" legend="<%= obj.getLegende(userLang) %>"/>
 	                    </jalios:if>
 	                    
